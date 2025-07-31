@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Health Literacy Outreach</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1',
+                        secondary: '#8B5CF6',
+                        accent: '#EC4899',
+                        light: '#F3F4F6',
+                        dark: '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #F9FAFB;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #6366F1, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(90deg, #6366F1, #8B5CF6, #EC4899);
+        }
+        .blob {
+            border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+            animation: morph 8s ease-in-out infinite;
+        }
+        .blob-spin {
+            animation: spin 20s linear infinite;
+        }
+        .logo-frame {
+            border: 4px solid #6366F1;
+            border-radius: 50%;
+            padding: 5px;
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
+        }
+        .doodle {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        .doodle-1 {
+            top: 20%;
+            left: 5%;
+        }
+        .doodle-2 {
+            bottom: 10%;
+            right: 5%;
+        }
+        .doodle-3 {
+            top: 60%;
+            left: 10%;
+        }
+        .doodle-4 {
+            top: 30%;
+            right: 10%;
+        }
+        @keyframes morph {
+            0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+            25% { border-radius: 45% 55% 65% 35% / 40% 50% 50% 60%; }
+            50% { border-radius: 50% 50% 55% 45% / 55% 45% 45% 45%; }
+            75% { border-radius: 40% 60% 70% 30% / 50% 40% 60% 50%; }
+            100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .title-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .title-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+            z-index: -1;
+        }
+        .circle-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20px 20px, rgba(99, 102, 241, 0.1) 2px, transparent 0);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #6366F1, #EC4899);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .active-nav::after {
+            width: 100%;
+        }
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800">
+    <!-- Title Page -->
+    <div id="title-page" class="title-page">
+        <div class="circle-pattern"></div>
+        
+        <!-- Decorative elements -->
+        <div class="doodle doodle-1">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M60 10C30 10 10 30 10 60C10 90 30 110 60 110C90 110 110 90 110 60C110 30 90 10 60 10Z" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5"/>
+            </svg>
+        </div>
+        <div class="doodle doodle-2">
+            <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 75C20 45 45 20 75 20C105 20 130 45 130 75C130 105 105 130 75 130C45 130 20 105 20 75Z" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-dasharray="8 8"/>
+            </svg>
+        </div>
+        <div class="doodle doodle-3">
+            <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 50C30 38.954 38.954 30 50 30C61.046 30 70 38.954 70 50C70 61.046 61.046 70 50 70C38.954 70 30 61.046 30 50Z" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/>
+            </svg>
+        </div>
+        <div class="doodle doodle-4">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 40C10 23.431 23.431 10 40 10C56.569 10 70 23.431 70 40C70 56.569 56.569 70 40 70C23.431 70 10 56.569 10 40Z" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"/>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-4 text-center">
+            <!-- Logo Frame -->
+            <div class="logo-frame h-32 w-32 mx-auto mb-8 fade-in">
+                <div class="rounded-full h-28 w-28 bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-3xl">
+                    GHLO
+                </div>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-heading font-bold mb-6 tracking-tight fade-in">
+                <span class="gradient-text">WHERE WORDS SAVE LIVES</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-12 fade-in">
+                Global Health Literacy Outreach: Empowering communities through accessible health education
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 fade-in">
+                <button id="enter-site" class="gradient-bg hover:opacity-90 text-white font-medium py-4 px-8 rounded-lg transition-colors text-lg">
+                    Enter Site
+                </button>
+                <a href="https://hcb.hackclub.com/donations/start/global-health-literacy-outreach" target="_blank" class="bg-white hover:bg-gray-100 text-primary border border-primary font-medium py-4 px-8 rounded-lg transition-colors text-lg">
+                    Support Our Mission
+                </a>
+            </div>
+        </div>
+        
+        <div class="scroll-down text-gray-500">
+            <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Main Site Content -->
+    <div id="main-site" class="hidden">
+        <!-- Navigation -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="logo-frame h-12 w-12 flex items-center justify-center mr-3">
+                        <div class="rounded-full h-10 w-10 bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-lg">
+                            GHLO
+                        </div>
+                    </div>
+                    <span class="text-xl font-heading font-bold text-gray-800">Global Health Literacy Outreach</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-link text-gray-600 hover:text-primary transition-colors nav-item active-nav" data-page="home">Home</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-primary transition-colors nav-item" data-page="about">About</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-primary transition-colors nav-item" data-page="programs">Programs</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-primary transition-colors nav-item" data-page="blog">Blog</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-primary transition-colors nav-item" data-page="team">Team</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-primary transition-colors nav-item" data-page="contact">Contact</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-white px-4 py-3 shadow-lg">
+                <div class="flex flex-col space-y-3">
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors py-2 nav-item" data-page="home">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors py-2 nav-item" data-page="about">About</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors py-2 nav-item" data-page="programs">Programs</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors py-2 nav-item" data-page="blog">Blog</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors py-2 nav-item" data-page="team">Team</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors py-2 nav-item" data-page="contact">Contact</a>
+                </div>
+            </div>
+        </header>
+
+        <div id="main-content">
+            <!-- Home Page -->
+            <div id="home" class="page active">
+                <!-- Hero Section -->
+                <section class="relative py-20 md:py-32 overflow-hidden">
+                    <!-- Decorative elements -->
+                    <div class="doodle doodle-1">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M60 10C30 10 10 30 10 60C10 90 30 110 60 110C90 110 110 90 110 60C110 30 90 10 60 10Z" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5"/>
+                        </svg>
+                    </div>
+                    <div class="doodle doodle-2">
+                        <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 75C20 45 45 20 75 20C105 20 130 45 130 75C130 105 105 130 75 130C45 130 20 105 20 75Z" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-dasharray="8 8"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="container mx-auto px-4">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right" data-aos-duration="1000">
+                                <h1 class="text-5xl md:text-7xl font-heading font-bold mb-6 leading-tight tracking-tight">
+                                    <span class="gradient-text">WHERE WORDS SAVE LIVES</span>
+                                </h1>
+                                <p class="text-lg text-gray-700 mb-8">We're dedicated to improving global health literacy by providing accessible education to underserved communities worldwide.</p>
+                                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                                    <a href="#" class="gradient-bg hover:opacity-90 text-white font-medium py-3 px-6 rounded-lg transition-colors text-center nav-item" data-page="programs">Our Programs</a>
+                                    <a href="#" class="bg-white hover:bg-gray-100 text-primary border border-primary font-medium py-3 px-6 rounded-lg transition-colors text-center nav-item" data-page="contact">Get Involved</a>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-10" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                                <div class="relative">
+                                    <div class="blob gradient-bg w-64 h-64 mx-auto">
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <svg class="w-40 h-40 text-white" viewBox="0 0 200 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M148.5,96.5c0,30.4-24.6,55-55,55s-55-24.6-55-55s24.6-55,55-55S148.5,66.1,148.5,96.5z"/>
+                                                <path d="M157.5,96.5c0,35.3-28.7,64-64,64s-64-28.7-64-64s28.7-64,64-64S157.5,61.2,157.5,96.5z M93.5,56.5c-22.1,0-40,17.9-40,40s17.9,40,40,40s40-17.9,40-40S115.6,56.5,93.5,56.5z"/>
+                                                <path d="M93.5,76.5c-11,0-20,9-20,20s9,20,20,20s20-9,20-20S104.5,76.5,93.5,76.5z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Floating elements -->
+                                    <div class="absolute top-0 left-0 blob-spin" style="animation-duration: 15s;">
+                                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="30" cy="30" r="30" fill="#6366F1" fill-opacity="0.2"/>
+                                            <path d="M30 15V45M15 30H45" stroke="#6366F1" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="absolute bottom-0 right-0 blob-spin" style="animation-duration: 20s;">
+                                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="40" cy="40" r="40" fill="#EC4899" fill-opacity="0.2"/>
+                                            <path d="M25 40H55M40 25V55" stroke="#EC4899" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section class="py-20 bg-white">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-16" data-aos="fade-up">
+                            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">What We Do</h2>
+                            <div class="w-24 h-1 gradient-bg mx-auto mb-8"></div>
+                            <p class="text-lg text-gray-600 max-w-3xl mx-auto">We create innovative health literacy programs that empower communities to make informed health decisions.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <!-- Feature 1 -->
+                            <div class="bg-white rounded-xl shadow-lg p-6 card-hover" data-aos="fade-up" data-aos-delay="100">
+                                <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-heading font-bold text-center mb-3">Education Programs</h3>
+                                <p class="text-gray-600 text-center">We develop culturally appropriate health education programs for diverse communities worldwide.</p>
+                            </div>
+                            
+                            <!-- Feature 2 -->
+                            <div class="bg-white rounded-xl shadow-lg p-6 card-hover" data-aos="fade-up" data-aos-delay="200">
+                                <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-heading font-bold text-center mb-3">Community Training</h3>
+                                <p class="text-gray-600 text-center">We train local community members to become health educators in their own communities.</p>
+                            </div>
+                            
+                            <!-- Feature 3 -->
+                            <div class="bg-white rounded-xl shadow-lg p-6 card-hover" data-aos="fade-up" data-aos-delay="300">
+                                <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h6v4H9V4zm9 16H6V4h1v5h10V4h1v16z"/>
+                                        <path d="M9 12h6v2H9zm0 4h6v2H9z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-heading font-bold text-center mb-3">Resource Development</h3>
+                                <p class="text-gray-600 text-center">We create accessible health education materials in multiple languages and formats.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="400">
+                            <a href="#" class="gradient-bg hover:opacity-90 text-white font-medium py-3 px-8 rounded-lg transition-colors inline-block nav-item" data-page="programs">Learn More</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stats Section -->
+                <section class="py-20 bg-gray-50">
+                    <div class="container mx-auto px-4">
+                        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12" data-aos="zoom-in">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <!-- Stat 1 -->
+                                <div class="text-center">
+                                    <div class="text-4xl font-heading font-bold gradient-text mb-2">3</div>
+                                    <p class="text-gray-600">International Chapters</p>
+                                </div>
+                                
+                                <!-- Stat 2 -->
+                                <div class="text-center">
+                                    <div class="text-4xl font-heading font-bold gradient-text mb-2">60+</div>
+                                    <p class="text-gray-600">Organization Members</p>
+                                </div>
+                                
+                                <!-- Stat 3 -->
+                                <div class="text-center">
+                                    <div class="text-4xl font-heading font-bold gradient-text mb-2">Global</div>
+                                    <p class="text-gray-600">Health Impact</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="py-20 gradient-bg">
+                    <div class="container mx-auto px-4">
+                        <div class="max-w-3xl mx-auto text-center text-white" data-aos="zoom-in">
+                            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6">Ready to Make a Difference?</h2>
+                            <p class="text-lg mb-8">Join us in our mission to improve health literacy and empower communities worldwide.</p>
+                            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                                <a href="#" class="bg-white text-primary hover:bg-gray-100 font-medium py-3 px-8 rounded-lg transition-colors nav-item" data-page="contact">Get Involved</a>
+                                <a href="https://hcb.hackclub.com/donations/start/global-health-literacy-outreach" target="_blank" class="bg-transparent hover:bg-white/10 text-white border border-white font-medium py-3 px-8 rounded-lg transition-colors">Donate Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- About Page -->
+            <div id="about" class="page">
+                <section class="py-20">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-16" data-aos="fade-up">
+                            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">About Us</h1>
+                            <div class="w-24 h-1 gradient-bg mx-auto mb-8"></div>
+                            <p class="text-lg text-gray-600 max-w-3xl mx-auto">We believe that health literacy is a fundamental right, not a privilege. Our organization works to bridge the knowledge gap in underserved communities worldwide.</p>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row items-center mb-20">
+                            <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                                <div class="relative">
+                                    <div class="blob bg-primary/20 w-64 h-64 mx-auto">
+                                        <svg class="w-full h-full text-primary" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M47.7,-57.2C59.9,-45.8,66.8,-29.1,68.8,-12.1C70.9,4.9,68.1,22.2,59.4,36.3C50.7,50.3,36,61.1,19.2,67.3C2.4,73.5,-16.6,75,-32.5,68.5C-48.5,61.9,-61.5,47.3,-68.2,30.1C-74.9,12.9,-75.3,-7,-68.5,-23.5C-61.7,-40,-47.7,-53.2,-33,-61.4C-18.3,-69.6,-2.9,-72.8,11.9,-70.1C26.7,-67.4,35.5,-68.7,47.7,-57.2Z" transform="translate(100 100)" />
+                                        </svg>
+                                    </div>
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <svg class="w-40 h-40 text-primary" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12" data-aos="fade-left">
+                                <h2 class="text-3xl font-heading font-bold text-primary mb-4">Our Mission</h2>
+                                <p class="text-gray-700 mb-6">To empower communities worldwide with the knowledge and resources they need to make informed health decisions, prevent disease, and improve quality of life.</p>
+                                
+                                <h2 class="text-3xl font-heading font-bold text-primary mb-4">Our Vision</h2>
+                                <p class="text-gray-700 mb-6">A world where everyone, regardless of location or socioeconomic status, has access to clear, accurate health information that enables them to lead healthier lives.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl shadow-lg p-8 mb-20" data-aos="fade-up">
+                            <h2 class="text-3xl font-heading font-bold text-primary mb-6 text-center">Our Values</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-4 mx-auto">
+                                        <svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-heading font-bold mb-2">Accessibility</h3>
+                                    <p class="text-gray-600">Making health information available to all, regardless of literacy level or background.</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-4 mx-auto">
+                                        <svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-heading font-bold mb-2">Cultural Sensitivity</h3>
+                                    <p class="text-gray-600">Respecting diverse backgrounds and beliefs in all our educational materials and approaches.</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-4 mx-auto">
+                                        <svg class="w-8 h-8 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-heading font-bold mb-2">Evidence-Based</h3>
+                                    <p class="text-gray-600">Using proven approaches and accurate information in all our educational programs.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center" data-aos="fade-up">
+                            <h2 class="text-3xl font-heading font-bold text-primary mb-6">Our Story</h2>
+                            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Global Health Literacy Outreach was founded in 2015 by a group of public health professionals who recognized the critical need for accessible health information in underserved communities. What began as a small initiative in three countries has grown into a global organization reaching communities across five continents.</p>
+                            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Our approach combines evidence-based health information with culturally appropriate delivery methods, ensuring that vital health knowledge reaches those who need it most, in ways they can understand and apply.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Programs Page -->
+            <div id="programs" class="page">
+                <section class="py-20">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-16" data-aos="fade-up">
+                            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Our Programs</h1>
+                            <div class="w-24 h-1 gradient-bg mx-auto mb-8"></div>
+                            <p class="text-lg text-gray-600 max-w-3xl mx-auto">We develop and implement culturally appropriate health education programs that address the specific needs of communities around the world.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+                            <!-- Program 1 -->
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                                <div class="h-48 bg-primary flex items-center justify-center">
+                                    <svg class="w-24 h-24 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-heading font-bold text-primary mb-3">Community Health Educators</h3>
+                                    <p class="text-gray-600 mb-4">We train local community members to become health educators, providing them with the knowledge and tools to educate their communities about essential health topics.</p>
+                                    <div class="flex flex-wrap gap-2 mb-6">
+                                        <span class="bg-primary/10 text-primary text-sm py-1 px-3 rounded-full">Training</span>
+                                        <span class="bg-primary/10 text-primary text-sm py-1 px-3 rounded-full">Community Engagement</span>
+                                        <span class="bg-primary/10 text-primary text-sm py-1 px-3 rounded-full">Capacity Building</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-500">3 international chapters</span>
+                                        <button class="text-primary hover:text-secondary font-medium flex items-center transition-colors">
+                                            Learn more
+                                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Program 2 -->
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                                <div class="h-48 bg-secondary flex items-center justify-center">
+                                    <svg class="w-24 h-24 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-heading font-bold text-primary mb-3">School Health Literacy</h3>
+                                    <p class="text-gray-600 mb-4">We work with schools to integrate health education into curricula, teaching children about nutrition, hygiene, disease prevention, and mental health.</p>
+                                    <div class="flex flex-wrap gap-2 mb-6">
+                                        <span class="bg-secondary/10 text-secondary text-sm py-1 px-3 rounded-full">Education</span>
+                                        <span class="bg-secondary/10 text-secondary text-sm py-1 px-3 rounded-full">Youth</span>
+                                        <span class="bg-secondary/10 text-secondary text-sm py-1 px-3 rounded-full">Curriculum</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-500">Educational outreach</span>
+                                        <button class="text-primary hover:text-secondary font-medium flex items-center transition-colors">
+                                            Learn more
+                                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Program 3 -->
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                                <div class="h-48 bg-accent flex items-center justify-center">
+                                    <svg class="w-24 h-24 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M18 4H6C4.9 4 4 4.9 4 6v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H6V6h12v12zM9 10v6h2v-6H9zm4 0v6h2v-6h-2z"/>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-heading font-bold text-primary mb-3">Mobile Health Clinics</h3>
+                                    <p class="text-gray-600 mb-4">Our mobile clinics bring health education and basic healthcare services to remote communities, ensuring access to vital information and care.</p>
+                                    <div class="flex flex-wrap gap-2 mb-6">
+                                        <span class="bg-accent/10 text-accent text-sm py-1 px-3 rounded-full">Healthcare</span>
+                                        <span class="bg-accent/10 text-accent text-sm py-1 px-3 rounded-full">Remote Access</span>
+                                        <span class="bg-accent/10 text-accent text-sm py-1 px-3 rounded-full">Direct Service</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-500">Community outreach</span>
+                                        <button class="text-primary hover:text-secondary font-medium flex items-center transition-colors">
+                                            Learn more
+                                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Program 4 -->
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                                <div class="h-48 bg-primary flex items-center justify-center">
+                                    <svg class="w-24 h-24 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z"/>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-heading font-bold text-primary mb-3">Digital Health Resources</h3>
+                                    <p class="text-gray-600 mb-4">We develop mobile apps, videos, and online courses that make health education accessible on digital platforms, even in low-resource settings.</p>
+                                    <div class="flex flex-wrap gap-2 mb-6">
+                                        <span class="bg-primary/10 text-primary text-sm py-1 px-3 rounded-full">Technology</span>
+                                        <span class="bg-primary/10 text-primary text-sm py-1 px-3 rounded-full">Innovation</span>
+                                        <span class="bg-primary/10 text-primary text-sm py-1 px-3 rounded-full">Accessibility</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-500">Digital outreach</span>
+                                        <button class="text-primary hover:text-secondary font-medium flex items-center transition-colors">
+                                            Learn more
+                                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-2xl p-8 md:p-12" data-aos="fade-up">
+                            <div class="flex flex-col md:flex-row items-center">
+                                <div class="md:w-2/3 mb-8 md:mb-0 md:pr-8">
+                                    <h2 class="text-3xl font-heading font-bold text-primary mb-4">Want to Support Our Programs?</h2>
+                                    <p class="text-gray-600 mb-6">Your donation helps us expand our reach and develop new educational resources for communities in need. Every contribution makes a difference in improving health literacy worldwide.</p>
+                                    <a href="https://hcb.hackclub.com/donations/start/global-health-literacy-outreach" target="_blank" class="gradient-bg hover:opacity-90 text-white font-medium py-3 px-8 rounded-lg transition-colors inline-block">Donate Now</a>
+                                </div>
+                                <div class="md:w-1/3">
+                                    <svg class="w-full h-auto text-primary" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="currentColor" opacity="0.2" d="M47.7,-57.2C59.9,-45.8,66.8,-29.1,68.8,-12.1C70.9,4.9,68.1,22.2,59.4,36.3C50.7,50.3,36,61.1,19.2,67.3C2.4,73.5,-16.6,75,-32.5,68.5C-48.5,61.9,-61.5,47.3,-68.2,30.1C-74.9,12.9,-75.3,-7,-68.5,-23.5C-61.7,-40,-47.7,-53.2,-33,-61.4C-18.3,-69.6,-2.9,-72.8,11.9,-70.1C26.7,-67.4,35.5,-68.7,47.7,-57.2Z" transform="translate(100 100)" />
+                                        <path fill="none" stroke="currentColor" stroke-width="2" d="M30,100 C30,70 70,70 70,100 C70,130 30,130 30,100 Z" />
+                                        <path fill="none" stroke="currentColor" stroke-width="2" d="M130,100 C130,70 170,70 170,100 C170,130 130,130 130,100 Z" />
+                                        <path fill="none" stroke="currentColor" stroke-width="2" d="M70,100 C70,60 130,60 130,100" />
+                                        <path fill="none" stroke="currentColor" stroke-width="2" d="M30,150 C30,180 170,180 170,150" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Blog Page -->
+            <div id="blog" class="page">
+                <section class="py-20">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-16" data-aos="fade-up">
+                            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Our Blog</h1>
+                            <div class="w-24 h-1 gradient-bg mx-auto mb-8"></div>
+                            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Stay updated with our latest news, insights, and stories from the field.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                            <!-- Blog Post 1 -->
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
+                                <div class="h-48 bg-gradient-to-br from-primary to-secondary"></div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <span class="bg-primary/10 text-primary text-xs py-1 px-2 rounded-full">Health Education</span>
+                                        <span class="text-gray-400 text-sm ml-auto">June 15, 2023</span>
+                                    </div>
+                                    <h3 class="text-xl font-heading font-bold text-gray-800 mb-3">The Impact of Visual Health Education Materials in Rural Communities</h3>
+                                    <p class="text-gray-600 mb-4">Our recent study shows how visual health education materials significantly improve understanding and retention of health information...</p>
+                                    <a href="https://example.com/blog/visual-health-education" target="_blank" class="text-primary hover:text-secondary font-medium flex items-center transition-colors">
+                                        Read more
+                                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Blog Post 2 -->
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="200">
+                                <div class="h-48 bg-gradient-to-br from-secondary to-accent"></div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <span class="bg-secondary/10 text-secondary text-xs py-1 px-2 rounded-full">Community Stories</span>
+                                        <span class="text-gray-400 text-sm ml-auto">May 28, 2023</span>
+                                    </div>
+                                    <h3 class="text-xl font-heading font-bold text-gray-800 mb-3">Meet Maria: A Community Health Educator Changing Lives</h3>
+                                    <p class="text-gray-600 mb-4">Maria has transformed health outcomes in her village by using creative approaches to teach essential health information...</p>
+                                    <a href="https://example.com/blog/maria-story" target="_blank" class="text-primary hover:text-secondary font-medium flex items-center transition-colors">
+                                        Read more
+                                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Blog Post 3 -->
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="300">
+                                <div class="h-48 bg-gradient-to-br from-accent to-primary"></div>
+                                <div class="p-6">
+                                    <div class="flex items-center mb-4">
+                                        <span class="bg-accent/10 text-accent text-xs py-1 px-2 rounded-full">Research</span>
+                                        <span class="text-gray-400 text-sm ml-auto">April 10, 2023</span>
+                                    </div>
+                                    <h3 class="text-xl font-heading font-bold text-gray-800 mb-3">New Study: Digital Health Literacy Among Youth</h3>
+                                    <p class="text-gray-600 mb-4">Our latest research explores how young people access and understand health information online, with surprising findings...</p>
+                                    <a href="https://example.com/blog/digital-health-literacy" target="_blank" class="text-primary hover:text-secondary font-medium flex items-center transition-colors">
+                                        Read more
+                                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center" data-aos="fade-up">
+                            <a href="https://substack.com/@globalhealthliteracyoutreach" target="_blank" class="gradient-bg hover:opacity-90 text-white font-medium py-3 px-8 rounded-lg transition-colors inline-block">Visit Our Full Blog</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Team Page -->
+            <div id="team" class="page">
+                <section class="py-20">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-16" data-aos="fade-up">
+                            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Our Team</h1>
+                            <div class="w-24 h-1 gradient-bg mx-auto mb-8"></div>
+                            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Meet the dedicated professionals who lead our organization and drive our mission forward.</p>
+                        </div>
+                        
+                        <div class="mb-20">
+                            <h2 class="text-3xl font-heading font-bold text-primary text-center mb-12" data-aos="fade-up">Board of Directors</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+                                <!-- Board Member 1 -->
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="relative h-64">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-20"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <svg class="w-24 h-24 text-primary" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-heading font-bold text-primary mb-1">Dr. Eleanor Chen</h3>
+                                        <p class="text-secondary font-medium mb-2">Board Chair</p>
+                                        <p class="text-gray-600 text-sm">Former WHO Director with 25+ years in global public health policy.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Board Member 2 -->
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="relative h-64">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-secondary to-accent opacity-20"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <svg class="w-24 h-24 text-secondary" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-heading font-bold text-primary mb-1">Robert Nkosi, MD</h3>
+                                        <p class="text-secondary font-medium mb-2">Vice Chair</p>
+                                        <p class="text-gray-600 text-sm">Physician and health equity advocate with expertise in rural healthcare delivery.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Board Member 3 -->
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="relative h-64">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-accent to-primary opacity-20"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <svg class="w-24 h-24 text-accent" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-heading font-bold text-primary mb-1">Maria Gonzalez</h3>
+                                        <p class="text-secondary font-medium mb-2">Treasurer</p>
+                                        <p class="text-gray-600 text-sm">Financial executive with experience in nonprofit management and international development.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Board Member 4 -->
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="relative h-64">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-20"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <svg class="w-24 h-24 text-primary" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-heading font-bold text-primary mb-1">Amir Patel</h3>
+                                        <p class="text-secondary font-medium mb-2">Secretary</p>
+                                        <p class="text-gray-600 text-sm">Technology entrepreneur focused on digital health solutions for developing regions.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Board Member 5 -->
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                                    <div class="relative h-64">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-secondary to-primary opacity-20"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <svg class="w-24 h-24 text-secondary" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-heading font-bold text-primary mb-1">Dr. Fatima Al-Zahrani</h3>
+                                        <p class="text-secondary font-medium mb-2">Board Member</p>
+                                        <p class="text-gray-600 text-sm">Education specialist with expertise in curriculum development for diverse cultural contexts.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Contact Page -->
+            <div id="contact" class="page">
+                <section class="py-20">
+                    <div class="container mx-auto px-4">
+                        <div class="text-center mb-16" data-aos="fade-up">
+                            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Contact Us</h1>
+                            <div class="w-24 h-1 gradient-bg mx-auto mb-8"></div>
+                            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Have questions or want to learn more about our programs? We'd love to hear from you.</p>
+                        </div>
+                        
+                        <div class="flex flex-col lg:flex-row">
+                            <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-8" data-aos="fade-right">
+                                <div class="bg-white rounded-2xl shadow-lg p-8">
+                                    <h3 class="text-2xl font-heading font-bold text-primary mb-6">Get In Touch</h3>
+                                    
+                                    <div class="flex items-start mb-6">
+                                        <div class="gradient-bg rounded-full w-10 h-10 flex items-center justify-center mr-4 shrink-0">
+                                            <svg class="w-5 h-5 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-lg font-heading font-bold text-primary mb-1">Address</h4>
+                                            <p class="text-gray-600">123 Health Education Way<br>Global City, GH 10001</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start mb-6">
+                                        <div class="gradient-bg rounded-full w-10 h-10 flex items-center justify-center mr-4 shrink-0">
+                                            <svg class="w-5 h-5 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-lg font-heading font-bold text-primary mb-1">Phone</h4>
+                                            <p class="text-gray-600">+1 (555) 123-4567</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start mb-6">
+                                        <div class="gradient-bg rounded-full w-10 h-10 flex items-center justify-center mr-4 shrink-0">
+                                            <svg class="w-5 h-5 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-lg font-heading font-bold text-primary mb-1">Email</h4>
+                                            <p class="text-gray-600">info@globalhealthliteracy.org</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex space-x-4 mt-8">
+                                        <a href="#" class="gradient-bg hover:opacity-90 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                                            <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="gradient-bg hover:opacity-90 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                                            <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="gradient-bg hover:opacity-90 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                                            <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-8 bg-white rounded-2xl shadow-lg p-8" data-aos="fade-up">
+                                    <h3 class="text-2xl font-heading font-bold text-primary mb-6">Support Our Mission</h3>
+                                    <p class="text-gray-600 mb-6">Your donation helps us expand our reach and develop new educational resources for communities in need.</p>
+                                    <a href="https://hcb.hackclub.com/donations/start/global-health-literacy-outreach" target="_blank" class="gradient-bg hover:opacity-90 text-white font-medium py-3 px-8 rounded-lg transition-colors inline-block">Donate Now</a>
+                                </div>
+                            </div>
+                            
+                            <div class="lg:w-1/2 lg:pl-8" data-aos="fade-left">
+                                <div class="bg-white rounded-2xl shadow-lg p-8">
+                                    <h3 class="text-2xl font-heading font-bold text-primary mb-6">Send Us a Message</h3>
+                                    
+                                    <form id="contact-form" class="space-y-6">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                            </div>
+                                            <div>
+                                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                        </div>
+                                        
+                                        <div>
+                                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required></textarea>
+                                        </div>
+                                        
+                                        <div class="text-center">
+                                            <button type="submit" class="gradient-bg hover:opacity-90 text-white font-medium py-3 px-8 rounded-lg transition-colors">Send Message</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="gradient-bg text-white py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div>
+                        <div class="flex items-center mb-6">
+                            <div class="logo-frame h-12 w-12 flex items-center justify-center mr-3">
+                                <div class="rounded-full h-10 w-10 bg-white flex items-center justify-center text-primary font-bold text-lg">
+                                    GHLO
+                                </div>
+                            </div>
+                            <span class="text-xl font-heading font-bold">Global Health Literacy Outreach</span>
+                        </div>
+                        <p class="text-white/80 mb-6">Empowering communities through accessible health education.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-white hover:text-white/80 transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="text-white hover:text-white/80 transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="text-white hover:text-white/80 transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-heading font-bold mb-6">Quick Links</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors nav-item" data-page="home">Home</a></li>
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors nav-item" data-page="about">About Us</a></li>
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors nav-item" data-page="programs">Programs</a></li>
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors nav-item" data-page="blog">Blog</a></li>
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors nav-item" data-page="team">Team</a></li>
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors nav-item" data-page="contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-heading font-bold mb-6">Programs</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors">Community Health Educators</a></li>
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors">School Health Literacy</a></li>
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors">Mobile Health Clinics</a></li>
+                            <li><a href="#" class="text-white/80 hover:text-white transition-colors">Digital Health Resources</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white/20 mt-12 pt-8 text-center">
+                    <p class="text-white/80">&copy; 2025 Global Health Literacy Outreach. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Title page fade-in elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            setTimeout(() => {
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('appear');
+                    }, index * 300);
+                });
+            }, 300);
+            
+            // Enter site button
+            document.getElementById('enter-site').addEventListener('click', function() {
+                document.getElementById('title-page').style.display = 'none';
+                document.getElementById('main-site').classList.remove('hidden');
+                window.scrollTo(0, 0);
+            });
+            
+            // Scroll down button
+            document.querySelector('.scroll-down').addEventListener('click', function() {
+                document.getElementById('title-page').style.display = 'none';
+                document.getElementById('main-site').classList.remove('hidden');
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Page navigation
+        const navItems = document.querySelectorAll('.nav-item');
+        const pages = document.querySelectorAll('.page');
+        
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const targetPage = item.getAttribute('data-page');
+                
+                // Update active page
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                    if (page.id === targetPage) {
+                        page.classList.add('active');
+                        window.scrollTo(0, 0);
+                    }
+                });
+                
+                // Update active nav item
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active-nav');
+                    if (link.getAttribute('data-page') === targetPage) {
+                        link.classList.add('active-nav');
+                    }
+                });
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Contact form submission
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // In a real implementation, you would send the form data to a server
+                // This is a demo that shows a success message
+                const formData = new FormData(contactForm);
+                const formValues = Object.fromEntries(formData.entries());
+                
+                // Clear the form
+                contactForm.reset();
+                
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4';
+                successMessage.innerHTML = `
+                    <strong class="font-bold">Thank you!</strong>
+                    <span class="block sm:inline"> Your message has been sent successfully. We'll get back to you soon.</span>
+                `;
+                
+                contactForm.parentNode.appendChild(successMessage);
+                
+                // Remove success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 5000);
+            });
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967ef726632ab78e',t:'MTc1Mzk4NDUxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
