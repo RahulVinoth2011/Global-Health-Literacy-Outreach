@@ -198,6 +198,17 @@
     .team-card:hover {
     transform: translateY(-8px);
     }
+    @keyframes tilt {
+      0%, 50%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(0.5deg); }
+      75% { transform: rotate(-0.5deg); }
+    }
+    .animate-tilt {
+    animation: tilt 10s infinite linear;
+    }
+    .gradient-glow {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(236, 72, 153, 0.5);
+    }
     </style>
 </head>
 <body class="font-sans text-gray-800">
@@ -763,64 +774,76 @@
                         <div class="mb-20">
                             <h2 class="text-3xl font-heading font-bold text-primary text-center mb-12" data-aos="fade-up">⭐️ Leadership & Team ⭐️</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-                                <!-- Board Member 1 (Cindy Li) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up">
-                                  <div class="relative h-64 flex items-center justify-center">
-                                    <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
-                                      <img src="https://i.postimg.cc/zv2G358Z/Cindy-Li.png" alt="Cindy Li" class="w-full h-full object-cover" />
+                                <!-- Board Member 1 (Cindy Li) with Glow -->
+                                <div class="relative group" data-aos="fade-up">
+                                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 blur-xl opacity-70 group-hover:opacity-100 transition duration-1000 animate-tilt"></div>
+                                    <div class="relative bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden">
+                                        <div class="relative h-64 flex items-center justify-center">
+                                            <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
+                                                <img src="https://i.postimg.cc/zv2G358Z/Cindy-Li.png" alt="Cindy Li" class="w-full h-full object-cover" />
+                                            </div>
+                                        </div>
+                                        <div class="p-4 text-center">
+                                            <h3 class="text-lg font-heading font-bold text-primary mb-1">Cindy Li</h3>
+                                            <p class="text-secondary font-medium mb-2">Executive Director</p>
+                                            <p class="text-gray-600 text-sm">Cindy is a 12th grade student passionate about health literacy and global impact.</p>
+                                        </div>
                                     </div>
-                                  </div>
-                                  <div class="p-4 text-center">
-                                    <h3 class="text-lg font-heading font-bold text-primary mb-1">Cindy Li</h3>
-                                    <p class="text-secondary font-medium mb-2">Executive Director</p>
-                                    <p class="text-gray-600 text-sm">Cindy is a 12th grade student passionate about health literacy and global impact.</p>
-                                  </div>
                                 </div>
 
-                                <!-- Board Member 2 (Zarius Hong) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                                  <div class="relative h-64 flex items-center justify-center">
-                                    <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
-                                      <img src="https://i.postimg.cc/prrqKYbh/Zarius-Hong.webp" alt="Zarius Hong" class="w-full h-full object-cover" />
+                                <!-- Board Member (Zarius Hong) -->
+                                <div class="relative group" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 blur-xl opacity-70 group-hover:opacity-100 transition duration-1000 animate-tilt"></div>
+                                    <div class="relative bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden">
+                                        <div class="relative h-64 flex items-center justify-center">
+                                            <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
+                                                <img src="https://i.postimg.cc/prrqKYbh/Zarius-Hong.webp" alt="Zarius Hong" class="w-full h-full object-cover" />
+                                            </div>
+                                        </div>
+                                        <div class="p-4 text-center">
+                                            <h3 class="text-lg font-heading font-bold text-primary mb-1">Zarius Hong</h3>
+                                            <p class="text-secondary font-medium mb-2">Senior Director of Education and Culture</p>
+                                            <p class="text-gray-600 text-sm">Zarius is passionate about educating others on health literacy and building a culture of well-informed communities.</p>
+                                        </div>
                                     </div>
-                                  </div>
-                                  <div class="p-4 text-center">
-                                    <h3 class="text-lg font-heading font-bold text-primary mb-1">Zarius Hong</h3>
-                                    <p class="text-secondary font-medium mb-2">Senior Director of Education and Culture</p>
-                                    <p class="text-gray-600 text-sm">Zarius is passionate about educating others on health literacy and building a culture of well-informed communities.</p>
-                                  </div>
                                 </div>
 
                                 <!-- Board Member 3 (Esther Lam) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                                  <div class="relative h-64 flex items-center justify-center">
-                                    <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
-                                      <img src="https://i.postimg.cc/d0zy52yZ/Esther-Lam.webp" alt="Esther Lam" class="w-full h-full object-cover" />
+                                <div class="relative group" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 blur-xl opacity-70 group-hover:opacity-100 transition duration-1000 animate-tilt"></div>
+                                    <div class="relative bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden">
+                                        <div class="relative h-64 flex items-center justify-center">
+                                            <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
+                                                <img src="https://i.postimg.cc/d0zy52yZ/Esther-Lam.webp" alt="Esther Lam" class="w-full h-full object-cover" />
+                                            </div>
+                                        </div>
+                                        <div class="p-4 text-center">
+                                            <h3 class="text-lg font-heading font-bold text-primary mb-1">Esther Lam</h3>
+                                            <p class="text-secondary font-medium mb-2">Senior Director of Advocacy</p>
+                                            <p class="text-gray-600 text-sm">Esther leads outreach efforts to promote health literacy and advocates for equitable access to reliable health information.</p>
+                                        </div>
                                     </div>
-                                  </div>
-                                  <div class="p-4 text-center">
-                                    <h3 class="text-lg font-heading font-bold text-primary mb-1">Esther Lam</h3>
-                                    <p class="text-secondary font-medium mb-2">Senior Director of Advocacy</p>
-                                    <p class="text-gray-600 text-sm">Esther leads outreach efforts to promote health literacy and advocates for equitable access to reliable health information.</p>
-                                  </div>
                                 </div>
 
                                 <!-- Board Member 4 (Iris Tong) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                                  <div class="relative h-64 flex items-center justify-center">
-                                    <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
-                                      <img src="https://i.postimg.cc/66Ytf9RC/Iris-Tong.webp" alt="Iris Tong" class="w-full h-full object-cover" />
+                                <div class="relative group" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 blur-xl opacity-70 group-hover:opacity-100 transition duration-1000 animate-tilt"></div>
+                                    <div class="relative bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden">
+                                        <div class="relative h-64 flex items-center justify-center">
+                                            <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
+                                                <img src="https://i.postimg.cc/66Ytf9RC/Iris-Tong.webp" alt="Iris Tong" class="w-full h-full object-cover" />
+                                            </div>
+                                        </div>
+                                        <div class="p-4 text-center">
+                                            <h3 class="text-lg font-heading font-bold text-primary mb-1">Iris Tong</h3>
+                                            <p class="text-secondary font-medium mb-2">Chief Operating Director</p>
+                                            <p class="text-gray-600 text-sm">Iris helps ensure everything runs smoothly behind the scenes, supporting the mission of health literacy through strong leadership and organization.</p>
+                                        </div>
                                     </div>
-                                  </div>
-                                  <div class="p-4 text-center">
-                                    <h3 class="text-lg font-heading font-bold text-primary mb-1">Iris Tong</h3>
-                                    <p class="text-secondary font-medium mb-2">Chief Operating Director</p>
-                                    <p class="text-gray-600 text-sm">Iris helps ensure everything runs smoothly behind the scenes, supporting the mission of health literacy through strong leadership and organization.</p>
-                                  </div>
                                 </div>
 
                                 <!-- Board Member 5 (Harini Iyer) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden gradient-glow" data-aos="fade-up" data-aos-delay="400">
                                   <div class="relative h-64 flex items-center justify-center">
                                     <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg flex items-center justify-center text-3xl font-bold text-primary bg-gray-100">
                                       HI
@@ -834,7 +857,7 @@
                                 </div>
 
                                 <!-- Board Member 6 (Joyce Tan) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden gradient-glow" data-aos="fade-up" data-aos-delay="500">
                                   <div class="relative h-64 flex items-center justify-center">
                                     <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
                                       <img src="https://i.postimg.cc/pXdCmtK0/joyce-ghlo.jpg" alt="Joyce Tan" class="w-full h-full object-cover" />
@@ -848,7 +871,7 @@
                                 </div>
 
                                 <!-- Board Member 7 (Anish Kurra Mc Curry) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="600">
+                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden gradient-glow" data-aos="fade-up" data-aos-delay="600">
                                   <div class="relative h-64 flex items-center justify-center">
                                     <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
                                       <img src="https://i.postimg.cc/NfPF6VPf/Screenshot-2025-08-03-at-2-49-43-PM.png" alt="Anish Kurra" class="w-full h-full object-cover" />
@@ -862,7 +885,7 @@
                                 </div>
 
                                 <!-- Board Member 8 (Rahul Vinoth) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="700">
+                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden gradient-glow" data-aos="fade-up" data-aos-delay="700">
                                   <div class="relative h-64 flex items-center justify-center">
                                     <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
                                       <img src="https://i.postimg.cc/2SsWqT5X/IMG-0057.jpg" alt="Rahul Vinoth" class="w-full h-full object-cover" />
@@ -876,7 +899,7 @@
                                 </div>
 
                                 <!-- Board Member 9 (Sahana Karthik) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="800">
+                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden gradient-glow" data-aos="fade-up" data-aos-delay="800">
                                   <div class="relative h-64 flex items-center justify-center">
                                     <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
                                       <img src="https://i.postimg.cc/vHzMbYTT/Sahana-Karthik.jpg" alt="Sahana Karthik" class="w-full h-full object-cover" />
@@ -890,7 +913,7 @@
                                 </div>
 
                                 <!-- Board Member 10 (Katherine Jeon) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="900">
+                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden gradient-glow" data-aos="fade-up" data-aos-delay="900">
                                   <div class="relative h-64 flex items-center justify-center">
                                     <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
                                       <img src="https://i.postimg.cc/htTdjCZy/Katherine-Jeon.jpg" alt="Katherine Jeon" class="w-full h-full object-cover" />
@@ -904,7 +927,7 @@
                                 </div>
 
                                 <!-- Board Member 11 (Aneisa Rampersaud) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="1000">
+                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden gradient-glow" data-aos="fade-up" data-aos-delay="1000">
                                   <div class="relative h-64 flex items-center justify-center">
                                     <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
                                       <img src="https://i.postimg.cc/bvhgzhBC/download.png" alt="Aneisa Rampersaud" class="w-full h-full object-cover" />
@@ -918,7 +941,7 @@
                                 </div>
 
                                 <!-- Board Member 12 (Venkata Ram Kaushik Chitti) -->
-                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="1100">
+                                <div class="bg-white/40 backdrop-blur-md border border-white/30 rounded-xl shadow-lg overflow-hidden gradient-glow" data-aos="fade-up" data-aos-delay="1100">
                                   <div class="relative h-64 flex items-center justify-center">
                                     <div class="w-40 h-40 rounded-full border-4 border-primary shadow-lg overflow-hidden">
                                       <img src="https://i.postimg.cc/PqM8ngDj/20250731-190956.jpg" alt="Venkata Ram Kaushik Chitti" class="w-full h-full object-cover" />
@@ -930,7 +953,6 @@
                                     <p class="text-gray-600 text-sm">Ram supports the technical side of GHLO’s mission, helping develop and maintain the organization's digital infrastructure.</p>
                                   </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
