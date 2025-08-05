@@ -176,31 +176,27 @@
         transform: translateY(-10px);
     }
     .team-card {
-        position: relative;
-        z-index: 0;
-        box-shadow: none;
-        transition: transform 0.3s ease;
+    position: relative;
+    z-index: 0;
+    box-shadow: none;
+    transition: transform 0.3s ease;
     }
     .team-card::before {
-        content: '';
-        position: absolute;
-        top: -10px;
-        left: -10px;
-        right: -10px;
-        bottom: -10px;
-        border-radius: 1rem;
-        background: linear-gradient(135deg, #8c66ff, #ec4899);
-        filter: blur(25px);
-        opacity: 0.9;
-        background-clip: padding-box;
-        z-index: -1;
-        transition: opacity 0.3s ease;
-    }
-    .team-card:hover::before {
-        opacity: 1;
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #8c66ff, #ec4899);
+    filter: blur(25px);
+    opacity: 1; /* Always visible */
+    background-clip: padding-box;
+    z-index: -1;
     }
     .team-card:hover {
-        transform: translateY(-8px);
+    transform: translateY(-8px);
     }
     </style>
 </head>
